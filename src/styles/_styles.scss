@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+
+#app {
+  font-family: 'Josefin Sans', helvetica, sans-serif;
+  margin-top: 40px;
+  h1 {
+    text-transform: uppercase;
+    color: $black;
+  }  
+}
+
+// Gameboard
+.gameboard-wrapper {
+  position: relative;
+  margin-top: 30px;
+}
+.gameboard {
+  border: $border;
+  border-radius: $rounded;
+  padding: 16px;
+  background-color: $gameboard;
+}
+
+// GameRow
+.row-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  background-color: $white;
+  border: $border;
+  border-radius: $rounded;
+  padding: 8px;
+  margin-bottom: 20px;
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+.row-label {
+  top: 3px;
+  left: 5px;
+}
+.guess-spot-wrapper {
+  margin-left: 5px;
+  padding-right: 20px;
+  border-right: $border;
+}
+.key-spot-wrapper {
+  margin-right: 10px;
+  padding-left: 20px;
+}
+.guess-spot,
+.key-spot {
+  border: $border;
+  border-radius: 50%;
+}
+.guess-spot {
+  width: $guessCircleSize;
+  height: $guessCircleSize;
+  margin: 10px;
+  background-color: $spot;
+  transition: 0.2s all ease-in-out;
+  cursor: pointer;
+}
+.key-spot {
+  width: $keyCircleSize;
+  height: $keyCircleSize;
+  margin: 5px;
+  background-color: $spot;
+  transition: 0.2s all ease-in-out;
+}
+
+// GameSelect
+.select-wrapper {
+  position: fixed;
+  top: 118px;
+  left: 180px;
+  border: $border;
+  border-radius: $rounded;
+  background-color: $gameboard;
+}
+.select-spot {
+  width: $guessCircleSize;
+  height: $guessCircleSize;
+  border: $border;
+  border-radius: 50%;
+  margin: 10px;
+  transition: 0.2s all ease-in-out;
+  cursor: pointer;
+}
+.select-1 { background-color: $red; }
+.select-2 { background-color: $blue; }
+.select-3 { background-color: $white; }
+.select-4 { background-color: $black; }
+.select-5 { background-color: $green; }
+.select-6 { background-color: $yellow; }
+
+.active {
+  border: 6px solid #000;
+}
