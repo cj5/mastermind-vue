@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1 class="d-flex justify-content-center">Mastermind</h1>    
+    <h1 class="d-flex justify-content-center">{{ title }}</h1>    
     <div class="gameboard-wrapper d-flex justify-content-center">
       <GameSelect />
       <div class="gameboard">      
@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import GameRow from './components/GameRow';
 import GameSelect from './components/GameSelect';
 
@@ -28,7 +29,10 @@ export default {
   components: {
     GameRow,
     GameSelect
-  }
+  },
+  computed: mapState([
+    'title'
+  ])
 };
 </script>
 
