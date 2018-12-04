@@ -32,7 +32,10 @@ export default {
   },
   computed: mapState([
     'title'
-  ])
+  ]),
+  mounted() {
+    document.querySelector('.row-wrapper.row-1').classList.add('active');
+  }
 };
 </script>
 
