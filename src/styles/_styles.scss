@@ -17,7 +17,6 @@
   margin-top: 30px;
 }
 .gameboard {
-  // border: $border;
   border-radius: $rounded;
   padding: 16px;
   background-color: $gameboard;
@@ -29,13 +28,18 @@
   align-items: center;
   justify-content: space-between;
   position: relative;
-  background-color: $white;
-  // border: $border;
+  background-color: $gray;
+  border: 2px solid $gameboard;
   border-radius: $rounded;
   padding: 8px;
   margin-bottom: 20px;
+  transition: all 0.2s ease-in-out;
   &:last-of-type {
     margin-bottom: 0;
+  }
+  &.active {
+    background-color: $white;
+    border: 2px solid $black;
   }
 }
 .row-label {
@@ -78,9 +82,9 @@
   position: fixed;
   top: 118px;
   left: 180px;
-  // border: $border;
   border-radius: $rounded;
   background-color: $gameboard;
+  padding: 3px 0;
 }
 .select-spot {
   width: $guessCircleSize;

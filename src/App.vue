@@ -3,17 +3,8 @@
     <h1 class="d-flex justify-content-center">{{ title }}</h1>    
     <div class="gameboard-wrapper d-flex justify-content-center">
       <GameSelect />
-      <div class="gameboard">      
-        <GameRow rowLabel="1" />
-        <GameRow rowLabel="2" />
-        <GameRow rowLabel="3" />
-        <GameRow rowLabel="4" />
-        <GameRow rowLabel="5" />
-        <GameRow rowLabel="6" />
-        <GameRow rowLabel="7" />
-        <GameRow rowLabel="8" />
-        <GameRow rowLabel="9" />
-        <GameRow rowLabel="10" />
+      <div class="gameboard">
+        <GameRow v-for="(i, key) in 10" :key="key" :rowLabel="key+1" :class="{ active: key === 0 }"/>
       </div>
     </div>    
   </div>
@@ -31,11 +22,8 @@ export default {
     GameSelect
   },
   computed: mapState([
-    'title'
+    'title',
   ]),
-  mounted() {
-    document.querySelector('.row-wrapper.row-1').classList.add('active');
-  }
 };
 </script>
 

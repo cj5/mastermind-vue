@@ -11,9 +11,10 @@
 
 <script>
 import { mapMutations, mapActions } from 'vuex';
+
 export default {
   methods: mapActions([
-    'selectedColor',
+    'selectedColor'
   ])
 }
 </script>

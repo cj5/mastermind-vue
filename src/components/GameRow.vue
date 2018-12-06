@@ -24,7 +24,8 @@
 export default {
   name: "row",
   props: {
-    rowLabel: String
+    rowLabel: Number,
+    // rowActive: Function
   },
   data() {
     return {
@@ -36,16 +37,24 @@ export default {
   },
   methods: {
     updateColor1() {
-      this.guessColor1 = this.$store.state.colorClass;
+      if (this.$el.className.includes('active')) {
+        this.guessColor1 = this.$store.state.colorClass;
+      }      
     },
     updateColor2() {
-      this.guessColor2 = this.$store.state.colorClass;
+      if (this.$el.className.includes('active')) {
+        this.guessColor2 = this.$store.state.colorClass;
+      }
     },
     updateColor3() {
-      this.guessColor3 = this.$store.state.colorClass;
+      if (this.$el.className.includes('active')) {
+        this.guessColor3 = this.$store.state.colorClass;
+      }
     },
     updateColor4() {
-      this.guessColor4 = this.$store.state.colorClass;
+      if (this.$el.className.includes('active')) {
+        this.guessColor4 = this.$store.state.colorClass;
+      }
     },
   }
 };
