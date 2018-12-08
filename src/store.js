@@ -6,17 +6,18 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     title: 'Mastermind',
-    colorClass: 'color-1',
-    gameLength: 2,
+    selectedColor: 'color-1',
+    gameLength: 8,
     rowCount: 0,
-    guessCount: 0
+    gameCode: [],
+    guessCode: [0,0,0,0]
   },
   mutations: {
     
   },
   actions: {
     selectedColor() {
-      this.state.colorClass = event.target.id;
+      this.state.selectedColor = event.target.id;
 
       document.querySelector('.select-spot.active').classList.remove('active');
       event.target.classList.add('active');
@@ -27,7 +28,6 @@ export default new Vuex.Store({
         gameCode.push(Math.floor((Math.random() * 6) + 1));
       }
       this.state.gameCode = gameCode;
-      console.log('gameCode: '+gameCode);
     }
   }
 });

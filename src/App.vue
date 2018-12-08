@@ -1,7 +1,12 @@
 <template>
   <div id="app">
-    <h1 class="d-flex justify-content-center">{{ title }}</h1>    
-    <div class="gameboard-wrapper d-flex justify-content-center">
+    <h1 class="d-flex justify-content-center">{{ title }}</h1>
+    <div class="game-length-buttons">
+      <button @click="gameLength6()">6</button>
+      <button @click="gameLength8()">8</button>
+      <button @click="gameLength10()">10</button>
+    </div>
+    <div class="gameboard-wrapper d-flex justify-content-center">      
       <GameSelect />
       <div class="gameboard">
         <GameRow v-for="(i, key) in gameLength" :key="key" :rowLabel="key+1" :class="{ active: key === activeKey }"/>
@@ -12,8 +17,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import { mapMutations, mapActions } from 'vuex';
+import { mapState, mapMutations, mapActions } from 'vuex';
 import GameRow from './components/GameRow';
 import GameSelect from './components/GameSelect';
 
@@ -42,11 +46,16 @@ export default {
         this.$store.state.rowCount++
         this.activeKey = this.$store.state.rowCount;
       }
+      this.$store.state.guessCode = [0,0,0,0];
       console.log('do guess checking');
-    }
+    },
+    gameLength6() { this.$store.state.gameLength = 6; },
+    gameLength8() { this.$store.state.gameLength = 8; },
+    gameLength10() { this.$store.state.gameLength = 10; },
   },
   mounted() {
     this.gameCode();
+    console.log('gameCode: '+this.$store.state.gameCode);
   }
 };
 </script>

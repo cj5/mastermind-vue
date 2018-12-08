@@ -10,11 +10,9 @@
 </template>
 
 <script>
-import { mapMutations, mapActions } from 'vuex';
+import { mapActions } from "vuex";
 
 export default {
-  methods: mapActions([
-    'selectedColor'
-  ])
-}
+  methods: mapActions(["selectedColor"])
+};
 </script>
