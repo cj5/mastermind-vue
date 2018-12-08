@@ -15,6 +15,7 @@
 .gameboard-wrapper {
   position: relative;
   margin-top: 30px;
+  padding-bottom: 80px;
 }
 .gameboard {
   border-radius: $rounded;
@@ -32,7 +33,7 @@
   border: 2px solid $gameboard;
   border-radius: $rounded;
   padding: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   transition: all 0.2s ease-in-out;
   &:last-of-type {
     margin-bottom: 0;
@@ -102,4 +103,26 @@
 
 .select-wrapper .active {
   border: 6px solid #000;
+}
+
+.submit {
+  display: none;
+  position: fixed;
+  top: 118px;
+  right: 140px;
+  padding: 8px 24px;
+  cursor: pointer;
+  border-radius: $rounded;
+  text-transform: uppercase;
+  background-color: transparent;
+  border: 2px solid $white;
+  color: $white;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    background-color: $white;
+    color: $black;
+  }
+  &:focus {
+    outline: none;
+  }
 }
