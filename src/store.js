@@ -7,8 +7,8 @@ export default new Vuex.Store({
   state: {
     title: 'Mastermind',
     colorClass: 'color-1',
-    gameCount: 0,
-    gameLength: 8,
+    gameLength: 2,
+    rowCount: 0,
     guessCount: 0
   },
   mutations: {

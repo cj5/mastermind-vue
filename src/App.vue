@@ -7,7 +7,7 @@
         <GameRow v-for="(i, key) in gameLength" :key="key" :rowLabel="key+1" :class="{ active: key === activeKey }"/>
       </div>      
     </div>
-    <button @click="moveActive" class="submit" role="button" aria-label="button">Submit</button>
+    <button @click="submit" class="submit" role="button" aria-label="button">Submit</button>
   </div>
 </template>
 
@@ -17,7 +17,7 @@ import { mapMutations, mapActions } from 'vuex';
 import GameRow from './components/GameRow';
 import GameSelect from './components/GameSelect';
 
-let count = 0;
+// let rowCount = 0;
 
 export default {
   name: "app",
@@ -27,22 +27,22 @@ export default {
   },
   data() {
     return {
-      activeKey: count
+      activeKey: this.$store.state.rowCount
     }
   },
   computed: mapState([
     'title',
-    'gameCount',
     'gameLength'
   ]),
   methods: {
     ...mapActions(['gameCode']),
-    moveActive() {
-      if (count < this.gameLength - 1) {
-        count++
-        this.activeKey = count;
-        document.querySelector('.submit').style.display = 'none';
+    submit() {
+      document.querySelector('.submit').style.display = 'none';
+      if (this.$store.state.rowCount < this.gameLength - 1) {
+        this.$store.state.rowCount++
+        this.activeKey = this.$store.state.rowCount;
       }
+      console.log('do guess checking');
     }
   },
   mounted() {
