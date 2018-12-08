@@ -9,7 +9,7 @@ export default new Vuex.Store({
     colorClass: 'color-1',
     gameCount: 0,
     gameLength: 8,
-    // gameCode: []
+    guessCount: 0
   },
   mutations: {
     
@@ -27,7 +27,7 @@ export default new Vuex.Store({
         gameCode.push(Math.floor((Math.random() * 6) + 1));
       }
       this.state.gameCode = gameCode;
-      console.log('gameCode => '+gameCode);
+      console.log('gameCode: '+gameCode);
     }
   }
 });
