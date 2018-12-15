@@ -47,8 +47,19 @@ export default new Vuex.Store({
             feedback[i] = 2;
             gameCode[i] = -2;
             // console.log('feedback: '+feedback);
-          } else if (guessCode[i] === gameCode[j] && guessCode[i] !== gameCode[i] && feedback[i] !== 2) {
+          }
+        }
+      }
+      for (let i = 0; i < 4; i++) {
+        // console.log('--------');
+        // console.log('i['+i+']: '+guessCode[i]+' (guess)');
+        // console.log('i['+i+']: '+gameCode[i]);
+        // console.log('--');
+        for (let j = 0; j < 4; j++) {
+          // console.log('j['+j+']: '+gameCode[j]);
+           if (guessCode[i] === gameCode[j] && guessCode[i] !== gameCode[i] && feedback[i] !== 2) {
             feedback[i] = 1;
+            gameCode[j] = -1;
             // console.log('feedback: '+feedback);
           }
         }
@@ -66,7 +77,9 @@ export default new Vuex.Store({
           document.querySelector('.active #key-spot-'+(i+1)).classList.add('color-3');
         }
       }
-      if (feedback = [2,2,2,2]) {
+      // console.log(feedback);
+      if ((feedback[0] && feedback[1] && feedback[2] && feedback[3]) === 2 ) {
+        console.log('You win!');
         setTimeout(() => {
           alert('You win!')
         }, 200);
