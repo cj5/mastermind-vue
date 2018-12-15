@@ -2,9 +2,9 @@
   <div id="app">
     <h1 class="d-flex justify-content-center">{{ title }}</h1>
     <div class="game-length-buttons">
-      <button @click="gameLength6()">6</button>
-      <button @click="gameLength8()">8</button>
-      <button @click="gameLength10()">10</button>
+      <button @click="gameLength6">6</button>
+      <button @click="gameLength8">8</button>
+      <button @click="gameLength10">10</button>
     </div>
     <div class="gameboard-wrapper d-flex justify-content-center">      
       <GameSelect />
@@ -20,8 +20,6 @@
 import { mapState, mapMutations, mapActions } from 'vuex';
 import GameRow from './components/GameRow';
 import GameSelect from './components/GameSelect';
-
-// let rowCount = 0;
 
 export default {
   name: "app",
