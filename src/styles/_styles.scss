@@ -18,6 +18,29 @@
       outline: none;
     }
   }
+  .submit {
+    display: inline-block;
+    opacity: 0;
+    position: fixed;
+    top: 118px;
+    right: -1000px;
+    padding: 8px 24px;
+    text-transform: uppercase;
+    background-color: transparent;
+    border: 2px solid $white;
+    color: $white;
+    cursor: default;
+    transition: opacity 0.2s ease-in-out;
+    &:hover {
+      background-color: $white;
+      color: $black;
+    }
+    &.show {
+      opacity: 1;
+      right: 140px;
+      cursor: pointer;
+    }
+  }
 }
 
 // Gameboard
@@ -49,7 +72,7 @@
   align-items: center;
   justify-content: space-between;
   position: relative;
-  background-color: $gray;
+  background-color: $row;
   border: 2px solid $gameboard;
   border-radius: $rounded;
   padding: 8px;
@@ -86,7 +109,7 @@
   width: $guessCircleSize;
   height: $guessCircleSize;
   margin: 10px;
-  background-color: $spot;
+  background-color: $empty;
   transition: 0.2s all ease-in-out;
   cursor: pointer;
 }
@@ -94,7 +117,7 @@
   width: $keyCircleSize;
   height: $keyCircleSize;
   margin: 5px;
-  background-color: $spot;
+  background-color: $empty;
   transition: 0.2s all ease-in-out;
 }
 
@@ -122,19 +145,3 @@
 .color-6 { background-color: $yellow; }
 
 .select-wrapper .active { border: 6px solid #000; }
-
-.submit {
-  display: none;
-  position: fixed;
-  top: 118px;
-  right: 140px;
-  padding: 8px 24px;
-  text-transform: uppercase;
-  background-color: transparent;
-  border: 2px solid $white;
-  color: $white;
-  &:hover {
-    background-color: $white;
-    color: $black;
-  }
-}

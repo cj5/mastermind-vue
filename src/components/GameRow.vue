@@ -9,12 +9,12 @@
     </div>
     <div class="key-spot-wrapper d-flex flex-column">
       <div class="top-row d-flex">
-        <div class="key-spot"></div>
-        <div class="key-spot"></div>
+        <div id="key-spot-1" class="key-spot"></div>
+        <div id="key-spot-2" class="key-spot"></div>
       </div>
       <div class="bottom-row d-flex">
-        <div class="key-spot"></div>
-        <div class="key-spot"></div>
+        <div id="key-spot-3" class="key-spot"></div>
+        <div id="key-spot-4" class="key-spot"></div>
       </div>
     </div>
   </div>
@@ -44,7 +44,7 @@ export default {
           this.$store.state.guessCode[0] = n;
         }
         if (!this.$store.state.guessCode.includes(0)) {
-          document.querySelector('.submit').style.display = 'inline-block';
+          document.querySelector('.submit').classList.add('show');
          console.log('guessCode: '+this.$store.state.guessCode);
         }
       }
@@ -58,7 +58,7 @@ export default {
           this.$store.state.guessCode[1] = n;
         }
         if (!this.$store.state.guessCode.includes(0)) {
-          document.querySelector('.submit').style.display = 'inline-block';
+          document.querySelector('.submit').classList.add('show');
          console.log('guessCode: '+this.$store.state.guessCode);
         }
       }
@@ -72,7 +72,7 @@ export default {
           this.$store.state.guessCode[2] = n;
         }
         if (!this.$store.state.guessCode.includes(0)) {
-          document.querySelector('.submit').style.display = 'inline-block';
+          document.querySelector('.submit').classList.add('show');
          console.log('guessCode: '+this.$store.state.guessCode);
         }
       }
@@ -86,7 +86,7 @@ export default {
           this.$store.state.guessCode[3] = n;
         }
         if (!this.$store.state.guessCode.includes(0)) {
-          document.querySelector('.submit').style.display = 'inline-block';
+          document.querySelector('.submit').classList.add('show');
          console.log('guessCode: '+this.$store.state.guessCode);
         }
       }

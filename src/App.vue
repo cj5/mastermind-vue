@@ -39,15 +39,19 @@ export default {
     'gameLength'
   ]),
   methods: {
-    ...mapActions(['gameCode']),
+    ...mapActions([
+      'gameCode',
+      'feedback'
+    ]),
     submit() {
-      document.querySelector('.submit').style.display = 'none';
+      document.querySelector('.submit').classList.remove('show');
       if (this.$store.state.rowCount < this.gameLength - 1) {
         this.$store.state.rowCount++
         this.activeKey = this.$store.state.rowCount;
       }
-      this.$store.state.guessCode = [0,0,0,0];
-      console.log('do guess checking');
+      this.feedback();
+      console.log('feedback: '+this.$store.state.feedback);
+      this.$store.state.guessCode = [0,0,0,0];      
     },
     gameLength6() { this.$store.state.gameLength = 6; },
     gameLength8() { this.$store.state.gameLength = 8; },
@@ -55,7 +59,7 @@ export default {
   },
   mounted() {
     this.gameCode();
-    console.log('gameCode: '+this.$store.state.gameCode);
+    console.log('gameCode: '+this.$store.state.gameCode);    
   }
 };
 </script>
