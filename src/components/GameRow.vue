@@ -21,8 +21,10 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
-  name: "row",
+  name: "GameRow",
   props: {
     rowLabel: Number,
   },
@@ -35,62 +37,12 @@ export default {
     };
   },
   methods: {
-    updateColor1() {
-      if (this.$el.className.includes('active')) {
-        this.guessColor1 = this.$store.state.selectedColor;
-        let selectedColor = this.$store.state.selectedColor;
-        let n = parseInt(selectedColor.substring(selectedColor.indexOf("-") + 1));
-        if (this.$store.state.selectedColor === 'color-'+n) {
-          this.$store.state.guessCode[0] = n;
-        }
-        if (!this.$store.state.guessCode.includes(0)) {
-          document.querySelector('.submit').classList.add('show');
-         console.log('guessCode: '+this.$store.state.guessCode);
-        }
-      }
-    },
-    updateColor2() {
-      if (this.$el.className.includes('active')) {
-        this.guessColor2 = this.$store.state.selectedColor;
-        let selectedColor = this.$store.state.selectedColor;
-        let n = parseInt(selectedColor.substring(selectedColor.indexOf("-") + 1));
-        if (this.$store.state.selectedColor === 'color-'+n) {
-          this.$store.state.guessCode[1] = n;
-        }
-        if (!this.$store.state.guessCode.includes(0)) {
-          document.querySelector('.submit').classList.add('show');
-         console.log('guessCode: '+this.$store.state.guessCode);
-        }
-      }
-    },
-    updateColor3() {
-      if (this.$el.className.includes('active')) {
-        this.guessColor3 = this.$store.state.selectedColor;
-        let selectedColor = this.$store.state.selectedColor;
-        let n = parseInt(selectedColor.substring(selectedColor.indexOf("-") + 1));
-        if (this.$store.state.selectedColor === 'color-'+n) {
-          this.$store.state.guessCode[2] = n;
-        }
-        if (!this.$store.state.guessCode.includes(0)) {
-          document.querySelector('.submit').classList.add('show');
-         console.log('guessCode: '+this.$store.state.guessCode);
-        }
-      }
-    },
-    updateColor4() {
-      if (this.$el.className.includes('active')) {
-        this.guessColor4 = this.$store.state.selectedColor;
-        let selectedColor = this.$store.state.selectedColor;
-        let n = parseInt(selectedColor.substring(selectedColor.indexOf("-") + 1));
-        if (this.$store.state.selectedColor === 'color-'+n) {
-          this.$store.state.guessCode[3] = n;
-        }
-        if (!this.$store.state.guessCode.includes(0)) {
-          document.querySelector('.submit').classList.add('show');
-         console.log('guessCode: '+this.$store.state.guessCode);
-        }
-      }
-    },
+    ...mapActions([
+      'updateColor1',
+      'updateColor2',
+      'updateColor3',
+      'updateColor4',
+    ])
   }
 };
 </script>

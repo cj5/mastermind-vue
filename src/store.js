@@ -11,25 +11,23 @@ export default new Vuex.Store({
     rowCount: 0,
     gameCode: [],
     guessCode: [0,0,0,0],
-    feedback: []  
+    guessColor1: '',
+    guessColor2: '',
+    guessColor3: '',
+    guessColor4: '',
+    feedback: [],
+    gameResult: '',
+    gameTime: '',
+    showGameResults: ''
   },
   mutations: {
-    
-  },
-  actions: {
-    selectedColor() {
-      this.state.selectedColor = event.target.id;
-
-      document.querySelector('.select-spot.active').classList.remove('active');
-      event.target.classList.add('active');
-    },
     gameCode() {
-      //🐞 3, 2, 1, 1 => w, w, w, w; should be w, w, w, x
       let gameCode = [];
       for (let i = 0; i < 4; i++) {
         gameCode.push(Math.floor(Math.random() * 6 + 1));
       }
       this.state.gameCode = gameCode;
+      console.log('gameCode: '+this.state.gameCode);
     },
     feedback() {
       const gameCodeSave = this.state.gameCode;
@@ -76,6 +74,7 @@ export default new Vuex.Store({
       const sortedFeedback = feedback.sort().reverse();
       feedback = sortedFeedback;
       this.state.feedback = feedback;
+      console.log('feedback: '+this.state.feedback);
       
       for (let i = 0; i < 4; i++) {
         if (feedback[i] === 2) {
@@ -86,8 +85,98 @@ export default new Vuex.Store({
       }
       if (feedback[0] && feedback[1] && feedback[2] && feedback[3] === 2 ) {
         setTimeout(() => {
-          alert('You win!')
-        }, 200);
+          this.state.gameResult = 'You win!!'
+          this.state.showGameResults = 'show win'
+        }, 500);
+      }
+    },
+  },
+  actions: {
+    selectedColor() {
+      this.state.selectedColor = event.target.id;
+
+      document.querySelector('.select-spot.active').classList.remove('active');
+      event.target.classList.add('active');
+    },
+    updateColor1() {
+      if (event.path[2].className.includes('active')) {
+        this.guessColor1 = this.state.selectedColor;
+        event.target.classList.add(this.guessColor1)
+        let selectedColor = this.state.selectedColor;
+        let n = parseInt(selectedColor.substring(selectedColor.indexOf("-") + 1));
+        this.state.guessCode[0] = n;
+        if (!this.state.guessCode.includes(0)) {
+          document.querySelector('.submit').classList.add('show');
+        }
+      }
+    },
+    updateColor2() {
+      if (event.path[2].className.includes('active')) {
+        this.guessColor2 = this.state.selectedColor;
+        event.target.classList.add(this.guessColor2)
+        let selectedColor = this.state.selectedColor;
+        let n = parseInt(selectedColor.substring(selectedColor.indexOf("-") + 1));
+        this.state.guessCode[1] = n;
+        if (!this.state.guessCode.includes(0)) {
+          document.querySelector('.submit').classList.add('show');
+        }
+      }
+    },
+    updateColor3() {
+      if (event.path[2].className.includes('active')) {
+        this.guessColor3 = this.state.selectedColor;
+        event.target.classList.add(this.guessColor3);
+        let selectedColor = this.state.selectedColor;
+        let n = parseInt(selectedColor.substring(selectedColor.indexOf("-") + 1));
+        this.state.guessCode[2] = n;
+        if (!this.state.guessCode.includes(0)) {
+          document.querySelector('.submit').classList.add('show');
+        }
+      }
+    },
+    updateColor4() {
+      if (event.path[2].className.includes('active')) {
+        this.guessColor4 = this.state.selectedColor;
+        event.target.classList.add(this.guessColor4)
+        let selectedColor = this.state.selectedColor;
+        let n = parseInt(selectedColor.substring(selectedColor.indexOf("-") + 1));
+        this.state.guessCode[3] = n;
+        if (!this.state.guessCode.includes(0)) {
+          document.querySelector('.submit').classList.add('show');
+        }
+      }
+    },
+    submit({commit}) {
+      commit('feedback');
+      document.querySelector('.submit').classList.remove('show');      
+      if (this.state.rowCount < this.state.gameLength - 1) {        
+        this.state.rowCount++
+        document.querySelector('.row-wrapper.active').classList.remove('active');
+        let activeClass = this.state.rowCount + 1;
+        document.querySelector('.row-wrapper.row-'+activeClass).classList.add('active');
+      } else {
+        this.state.gameResult = 'You lose.'
+        this.state.showGameResults = 'show lose'
+      }
+      this.state.guessCode = [0,0,0,0];
+    },    
+    resetState({commit}) {
+      console.log('** reset state **');
+      commit('gameCode');
+      this.state.showGameResults = ''
+      this.state.selectedColor = 'color-1';
+      document.querySelector('.select-spot.active').classList.remove('active');
+      document.querySelector('#color-1').classList.add('active');
+      this.state.rowCount = 0;
+      document.querySelector('.row-wrapper.active').classList.remove('active');
+      document.querySelector('.row-1').classList.add('active');
+      const guessSpotEls = (document.getElementsByClassName('guess-spot'));
+      const keySpotEls = (document.getElementsByClassName('key-spot'));
+      for (let i = 0; i < guessSpotEls.length; i++) {
+        for (let j = 1; j <= 6; j++) {
+          guessSpotEls[i].classList.remove('color-'+j);
+          keySpotEls[i].classList.remove('color-'+j);
+        }
       }
     }
   }

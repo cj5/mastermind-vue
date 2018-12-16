@@ -1,10 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 
+html, body {
+  overflow-x: hidden;
+}
 #app {
   font-family: 'Josefin Sans', helvetica, sans-serif;
   padding-top: 40px;
   background-color: #242424;
-  min-height: 100vh;
+  min-height: 100vh;  
   h1 {
     text-transform: uppercase;
     color: $white;
@@ -13,6 +16,7 @@
   button {
     cursor: pointer;
     border-radius: $rounded;
+    text-transform: uppercase;    
     transition: all 0.2s ease-in-out;
     &:focus {
       outline: none;
@@ -23,9 +27,8 @@
     opacity: 0;
     position: fixed;
     top: 118px;
-    right: -1000px;
     padding: 8px 24px;
-    text-transform: uppercase;
+    right: -1000px;
     background-color: transparent;
     border: 2px solid $white;
     color: $white;
@@ -42,6 +45,9 @@
     }
   }
 }
+.ft-sz-sm { font-size: $ft-sz-sm; }
+.ft-sz-md { font-size: $ft-sz-md; }
+.ft-sz-lg { font-size: $ft-sz-lg; }
 
 // Gameboard
 .gameboard-wrapper {
@@ -129,6 +135,7 @@
   border-radius: $rounded;
   background-color: $gameboard;
   padding: 3px 0;
+  .active { border: 6px solid #000; }
 }
 .select-spot {
   width: $guessCircleSize;
@@ -144,4 +151,50 @@
 .color-5 { background-color: $green; }
 .color-6 { background-color: $yellow; }
 
-.select-wrapper .active { border: 6px solid #000; }
+// GameResult
+.game-results-wrapper {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 120%;
+  top: 0;
+  background-color: rgba($black, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+  z-index: 999;
+  &.show {
+    left: 0;
+  }
+  &.win .game-results {
+    background-color: rgba($green, 0.6);
+    .results-button:hover {
+      color: $green;
+    }
+  }
+  &.lose .game-results {
+    background-color: rgba($red, 0.6);
+    .results-button:hover {
+      color: $red;
+    }
+  }
+}
+.game-results {  
+  border-radius: $rounded;
+  border: 2px solid $white;
+  padding: 80px;
+  p {
+    color: $white;
+    text-transform: uppercase;
+  }
+}
+.results-button {
+  color: $white;
+  padding: 12px 24px;
+  border: 2px solid $white;
+  background-color: transparent;
+  &:hover {
+    background-color: $white;
+  }
+}
