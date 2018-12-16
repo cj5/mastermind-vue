@@ -18,7 +18,8 @@ export default new Vuex.Store({
     feedback: [],
     gameResult: '',
     gameTime: '',
-    showGameResults: ''
+    showGameResults: '',
+    didWin: false
   },
   mutations: {
     gameCode() {
@@ -84,6 +85,7 @@ export default new Vuex.Store({
         }
       }
       if (feedback[0] && feedback[1] && feedback[2] && feedback[3] === 2 ) {
+        this.state.didWin = true;
         setTimeout(() => {
           this.state.gameResult = 'You win!!'
           this.state.showGameResults = 'show win'
@@ -148,15 +150,19 @@ export default new Vuex.Store({
     },
     submit({commit}) {
       commit('feedback');
-      document.querySelector('.submit').classList.remove('show');      
+      document.querySelector('.submit').classList.remove('show');
+      console.log('rowCount: '+this.state.rowCount);
+      console.log('gameLength:', this.state.gameLength - 1);
       if (this.state.rowCount < this.state.gameLength - 1) {        
         this.state.rowCount++
         document.querySelector('.row-wrapper.active').classList.remove('active');
         let activeClass = this.state.rowCount + 1;
         document.querySelector('.row-wrapper.row-'+activeClass).classList.add('active');
-      } else {
-        this.state.gameResult = 'You lose.'
-        this.state.showGameResults = 'show lose'
+      } else if (this.state.rowCount >= this.state.gameLength - 1 && this.state.didWin === false) {
+        setTimeout(() => {
+          this.state.gameResult = 'You lose.'
+          this.state.showGameResults = 'show lose'
+        }, 500);
       }
       this.state.guessCode = [0,0,0,0];
     },    
@@ -172,6 +178,7 @@ export default new Vuex.Store({
       document.querySelector('.row-1').classList.add('active');
       const guessSpotEls = (document.getElementsByClassName('guess-spot'));
       const keySpotEls = (document.getElementsByClassName('key-spot'));
+      this.state.didWin = false;
       for (let i = 0; i < guessSpotEls.length; i++) {
         for (let j = 1; j <= 6; j++) {
           guessSpotEls[i].classList.remove('color-'+j);

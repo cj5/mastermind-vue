@@ -51,7 +51,7 @@ export default {
       'feedback'
     ]),
     
-    gameLength6() { this.$store.state.gameLength = 6; },
+    gameLength6() { this.$store.state.gameLength = 1; },
     gameLength8() { this.$store.state.gameLength = 8; },
     gameLength10() { this.$store.state.gameLength = 10; },
   },

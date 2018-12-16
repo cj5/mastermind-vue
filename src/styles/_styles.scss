@@ -13,6 +13,9 @@ html, body {
     color: $white;
     font-weight: bold;
   }
+  p {
+    margin: 0;
+  }
   button {
     cursor: pointer;
     border-radius: $rounded;
@@ -186,7 +189,6 @@ html, body {
   padding: 80px;
   p {
     color: $white;
-    text-transform: uppercase;
   }
 }
 .results-button {
