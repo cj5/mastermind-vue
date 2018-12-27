@@ -10,9 +10,10 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions } from 'vuex';
 
 export default {
-  methods: mapActions(["selectedColor"])
+  name: 'GameSelect',
+  methods: mapActions(['selectedColor'])
 };
 </script>

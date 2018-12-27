@@ -1,5 +1,5 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import Vue from 'vue';
+import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
@@ -64,7 +64,7 @@ export default new Vuex.Store({
             feedback[i] = 1;
             guessCode[i] = -1;
             gameCode[j] = -1
-            // console.log('guessCode: '+guessCode);
+            // console.log('guessCode: '+this.state.guessCode);
             // console.log('gameCode: '+gameCode);
             // console.log('feedback: '+feedback);
           }
@@ -94,38 +94,63 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    // gameTime() {
+
+    // },
     selectedColor() {
       this.state.selectedColor = event.target.id;
 
       document.querySelector('.select-spot.active').classList.remove('active');
       event.target.classList.add('active');
     },
+    // ======================================================
+    // ** Refactor these updateColorN() methods into one!! **
     updateColor1() {
       if (event.path[2].className.includes('active')) {
+        let spotEl = document.querySelector('.active .spot-1');
+        spotEl.className.split(" ").filter(c => !c.startsWith('color-'));
+        if (spotEl.className.includes('color-')) {
+          const colorClass = spotEl.className.split(" ").filter(c => c.startsWith('color'));
+          spotEl.classList.remove(colorClass[0]);
+        }
         this.guessColor1 = this.state.selectedColor;
-        event.target.classList.add(this.guessColor1)
+        event.target.classList.add(this.guessColor1);
         let selectedColor = this.state.selectedColor;
         let n = parseInt(selectedColor.substring(selectedColor.indexOf("-") + 1));
         this.state.guessCode[0] = n;
         if (!this.state.guessCode.includes(0)) {
           document.querySelector('.submit').classList.add('show');
+          console.log('guessCode: '+this.state.guessCode);
         }
       }
     },
     updateColor2() {
       if (event.path[2].className.includes('active')) {
+        let spotEl = document.querySelector('.active .spot-2');
+        spotEl.className.split(" ").filter(c => !c.startsWith('color-'));
+        if (spotEl.className.includes('color-')) {
+          const colorClass = spotEl.className.split(" ").filter(c => c.startsWith('color'));
+          spotEl.classList.remove(colorClass[0]);
+        }
         this.guessColor2 = this.state.selectedColor;
-        event.target.classList.add(this.guessColor2)
+        event.target.classList.add(this.guessColor2);
         let selectedColor = this.state.selectedColor;
         let n = parseInt(selectedColor.substring(selectedColor.indexOf("-") + 1));
         this.state.guessCode[1] = n;
         if (!this.state.guessCode.includes(0)) {
           document.querySelector('.submit').classList.add('show');
+          console.log('guessCode: '+this.state.guessCode);
         }
       }
     },
     updateColor3() {
       if (event.path[2].className.includes('active')) {
+        let spotEl = document.querySelector('.active .spot-3');
+        spotEl.className.split(" ").filter(c => !c.startsWith('color-'));
+        if (spotEl.className.includes('color-')) {
+          const colorClass = spotEl.className.split(" ").filter(c => c.startsWith('color'));
+          spotEl.classList.remove(colorClass[0]);
+        }
         this.guessColor3 = this.state.selectedColor;
         event.target.classList.add(this.guessColor3);
         let selectedColor = this.state.selectedColor;
@@ -133,26 +158,32 @@ export default new Vuex.Store({
         this.state.guessCode[2] = n;
         if (!this.state.guessCode.includes(0)) {
           document.querySelector('.submit').classList.add('show');
+          console.log('guessCode: '+this.state.guessCode);
         }
       }
     },
     updateColor4() {
       if (event.path[2].className.includes('active')) {
+        let spotEl = document.querySelector('.active .spot-4');
+        spotEl.className.split(" ").filter(c => !c.startsWith('color-'));
+        if (spotEl.className.includes('color-')) {
+          const colorClass = spotEl.className.split(" ").filter(c => c.startsWith('color'));
+          spotEl.classList.remove(colorClass[0]);
+        }
         this.guessColor4 = this.state.selectedColor;
-        event.target.classList.add(this.guessColor4)
+        event.target.classList.add(this.guessColor4);
         let selectedColor = this.state.selectedColor;
         let n = parseInt(selectedColor.substring(selectedColor.indexOf("-") + 1));
         this.state.guessCode[3] = n;
         if (!this.state.guessCode.includes(0)) {
           document.querySelector('.submit').classList.add('show');
+          console.log('guessCode: '+this.state.guessCode);
         }
       }
     },
     submit({commit}) {
       commit('feedback');
       document.querySelector('.submit').classList.remove('show');
-      console.log('rowCount: '+this.state.rowCount);
-      console.log('gameLength:', this.state.gameLength - 1);
       if (this.state.rowCount < this.state.gameLength - 1) {        
         this.state.rowCount++
         document.querySelector('.row-wrapper.active').classList.remove('active');
@@ -165,7 +196,10 @@ export default new Vuex.Store({
         }, 500);
       }
       this.state.guessCode = [0,0,0,0];
-    },    
+    },
+    gameLength6() { this.state.gameLength = 6; },
+    gameLength8() { this.state.gameLength = 8; },
+    gameLength10() { this.state.gameLength = 10; },
     resetState({commit}) {
       console.log('** reset state **');
       commit('gameCode');
