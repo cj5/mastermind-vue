@@ -107,8 +107,7 @@ export default new Vuex.Store({
     // ** Refactor these updateColorN() methods into one!! **
     updateColor1() {
       if (event.path[2].className.includes('active')) {
-        let spotEl = document.querySelector('.active .spot-1');
-        spotEl.className.split(" ").filter(c => !c.startsWith('color-'));
+        const spotEl = document.querySelector('.active .spot-1');
         if (spotEl.className.includes('color-')) {
           const colorClass = spotEl.className.split(" ").filter(c => c.startsWith('color'));
           spotEl.classList.remove(colorClass[0]);
@@ -126,8 +125,7 @@ export default new Vuex.Store({
     },
     updateColor2() {
       if (event.path[2].className.includes('active')) {
-        let spotEl = document.querySelector('.active .spot-2');
-        spotEl.className.split(" ").filter(c => !c.startsWith('color-'));
+        const spotEl = document.querySelector('.active .spot-2');
         if (spotEl.className.includes('color-')) {
           const colorClass = spotEl.className.split(" ").filter(c => c.startsWith('color'));
           spotEl.classList.remove(colorClass[0]);
@@ -145,8 +143,7 @@ export default new Vuex.Store({
     },
     updateColor3() {
       if (event.path[2].className.includes('active')) {
-        let spotEl = document.querySelector('.active .spot-3');
-        spotEl.className.split(" ").filter(c => !c.startsWith('color-'));
+        const spotEl = document.querySelector('.active .spot-3');
         if (spotEl.className.includes('color-')) {
           const colorClass = spotEl.className.split(" ").filter(c => c.startsWith('color'));
           spotEl.classList.remove(colorClass[0]);
@@ -164,8 +161,7 @@ export default new Vuex.Store({
     },
     updateColor4() {
       if (event.path[2].className.includes('active')) {
-        let spotEl = document.querySelector('.active .spot-4');
-        spotEl.className.split(" ").filter(c => !c.startsWith('color-'));
+        const spotEl = document.querySelector('.active .spot-4');
         if (spotEl.className.includes('color-')) {
           const colorClass = spotEl.className.split(" ").filter(c => c.startsWith('color'));
           spotEl.classList.remove(colorClass[0]);
