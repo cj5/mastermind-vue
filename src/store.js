@@ -215,6 +215,7 @@ export default new Vuex.Store({
           keySpotEls[i].classList.remove('color-'+j);
         }
       }
+      window.scrollTo(0, 0);
     }
   }
 });
